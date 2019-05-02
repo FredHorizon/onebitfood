@@ -12,4 +12,6 @@ class Restaurant < ApplicationRecord
   validates :street, presence: true
 
   enum status: { closed: 0, open: 1 } # um restaurante pode estar ABERTO ou FECHADO
+
+  has_one_attached :image
 end
