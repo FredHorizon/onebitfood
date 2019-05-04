@@ -14,4 +14,12 @@ class Restaurant < ApplicationRecord
   enum status: { closed: 0, open: 1 } # um restaurante pode estar ABERTO ou FECHADO
 
   has_one_attached :image
+
+  geocoded_by :address # geolocalização que será feita por meio do método adrress
+
+  after_validation :geocode
+
+  def address
+    [street, number, city, state].compact.join(', ')
+  end
 end
